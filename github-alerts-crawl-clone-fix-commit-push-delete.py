@@ -59,9 +59,21 @@ def get_alert_message(s, alert_url):
 		print("Unknown Error: " + alert_url)
 		print(e)
 
+def review(url):
+	with open('review_cmds.sh', 'a') as f:
+		f.write("cd $(echo $PWD'/mypyrepos/" + url.split('/')[-1] + "')\n")
+		f.write("git status\n")
+		f.write("git add requirements.txt\n")
+		f.write("git status\n")
+		f.write("git diff --cached\n")
+		f.write("echo '===" + url.split('/')[-1] + " done==='\n")
+		f.write("cd ../..\n")
+
 def commit_push(url):
 	with open('commit_push_cmds.sh', 'a') as f:
 		f.write("cd $(echo $PWD'/mypyrepos/" + url.split('/')[-1] + "')\n")
+		f.write("git status\n")
+		f.write("git add requirements.txt\n")
 		f.write("git status\n")
 		f.write("git commit -m \"addressing security vulnerabilities\"\n")
 		f.write("git status\n")
@@ -134,6 +146,7 @@ def main():
 					os.unlink("mypyrepos/" + repo_name + '/requirements.txt')
 					os.rename("mypyrepos/" + repo_name + '/requirements2.txt', "mypyrepos/" + repo_name + '/requirements.txt')
 
+				review(repo_url)
 				commit_push(repo_url)
 				delete_clones(repo_url)
 			except Exception as e:

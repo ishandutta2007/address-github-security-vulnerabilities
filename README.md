@@ -8,9 +8,11 @@ This is a repo which bulk fixes security vulnerabilities of all of my repos.
 
 2. `python3 github-alerts-crawl-clone-fix-commit-push-delete.py` will update requirements.md of each of them with specified version of python package
 
-3. Review repos , ff all is good to commit and push run `bash commit_push_cmds.sh`
+3. Review repos by `review_cmds.sh`
 
-4. run `bash delete_clones_cmds.sh`
+4. If all is good to commit and push run `bash commit_push_cmds.sh`
+
+5. run `bash delete_clones_cmds.sh`
 
 ### Support:
 
