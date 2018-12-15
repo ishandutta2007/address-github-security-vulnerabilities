@@ -1,0 +1,6 @@
+*.json
+config.txt
+*.sh
+*.bak
+__pycache__
+mypyrepos/**/*
